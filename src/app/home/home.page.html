@@ -7,5 +7,37 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-list *ngIf="!selected">
+
+      <ion-item *ngFor="let item of usersData">
+        <ion-label>
+          {{item.name}}
+        </ion-label>
+        <ion-button size="small" (click)="showUserDetails(item)">Mostrar</ion-button>
+
+      </ion-item>
+  </ion-list>
+
+  <ion-card *ngIf="selected">
+    <ion-card-header>
+      <ion-card-subtitle>{{selectedUser.phone}}</ion-card-subtitle>
+      <ion-card-title>{{selectedUser.name}}</ion-card-title>
+    </ion-card-header>
   
+    <ion-card-content>
+      <b>Nombre de usuario:</b> {{selectedUser.username}}, <b>Email:</b> {{selectedUser.email}}, <b>Dirección:</b> {{selectedUser.address.street}}, 
+      {{selectedUser.address.suite}}, {{selectedUser.address.city}}, {{selectedUser.address.zipcode}}, 
+      {{selectedUser.address.geo.lat}}, {{selectedUser.address.geo.lng}}, 
+      <b>Página web:</b> {{selectedUser.website}}, <b>Empresa:</b> {{selectedUser.company.name}}, {{selectedUser.company.catchPhrase}}, 
+      {{selectedUser.company.bs}} 
+      
+
+    </ion-card-content>
+    <ion-row class="cardfooter">
+      <ion-col>
+        <ion-button size="small" color="success" (click)="openDialer()">Llamar</ion-button>
+        <ion-button size="small" color="danger" (click)="hideUserDetails()">Volver</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>
